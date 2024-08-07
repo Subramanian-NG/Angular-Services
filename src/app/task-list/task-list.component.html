@@ -1,0 +1,8 @@
+<div>
+    <app-headercomponent [title]="'Task List'" [total]="tasklist.length"></app-headercomponent>
+    <input type="text" [(ngModel)]="searchtext" placeholder="Search tasks">
+    <div *ngFor="let task of filteredTasks">
+      <app-task [task]="task" (taskDeleted)="deleteTask($event)"></app-task>
+    </div>
+  </div>
+  

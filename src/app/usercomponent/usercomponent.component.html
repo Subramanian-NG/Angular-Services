@@ -1,0 +1,25 @@
+@if (isLoggedIn) {
+    <button (click)="logout()">Sign out</button>
+    <p>User logged in</p>
+    <ul>
+    <!-- @for (os of operatingSystems; track os.id) {
+        <li>{{ os.name }}</li>
+      } -->
+
+      @for (car of cars; track car.id) {
+        <li>
+          Name : <span [style.color]="car.color">{{ car.make }}</span>
+          <br>
+          Model : {{ car.model }}
+          <br>
+          Color : {{ car.color }}
+        </li>
+        
+        
+      }
+    </ul>
+  }
+@else { 
+    <button (click)="login()">Sign in</button>
+    <p>User not logged in</p>
+}

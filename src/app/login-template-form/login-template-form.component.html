@@ -1,0 +1,44 @@
+<p>Login Form using Template form</p>
+
+<!-- <pre>{{ loginUser | json }}</pre> -->
+
+<form (ngSubmit)="onSubmit()" #actorForm="ngForm">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" appEmailValidator email [(ngModel)]="loginUser.email" name="email" #email="ngModel">
+
+    <div *ngIf="email.invalid && (email.touched)">
+        <div *ngIf="email.hasError('required')" class="error-message">
+          Please specify the email address.
+        </div>
+        <div *ngIf="email.hasError('email')" class="error-message">
+          Please enter a valid email address.
+        </div>
+        <div *ngIf="email.hasError('invalidEmail')" class="error-message">
+          Email must end with product.com.
+        </div>
+    </div>
+   
+    <!-- <div [hidden]="email.valid || email.pristine"
+            class="error-message">
+          Name is required
+    </div> -->
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" required [(ngModel)]="loginUser.password" name="password" #password="ngModel">
+    <div *ngIf="password.invalid && (password.touched)">
+      <div *ngIf="password.hasError('required')" class="error-message">
+        Please enter the password.
+      </div>
+  </div>
+  </div>
+  <!-- <div class="form-group">
+    <label for="skill">Skill</label>
+    <select class="form-control" id="skill" required [(ngModel)]="loginUser.skill" name="skill">
+      <option *ngFor="let skill of skills" [value]="skill">{{ skill }}</option>
+    </select>
+  </div> -->
+  <button type="submit" class="btn btn-primary"
+        [disabled]="!actorForm.form.valid">Login</button>
+</form>

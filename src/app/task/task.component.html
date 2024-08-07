@@ -1,0 +1,9 @@
+<div *ngIf="task">
+    <h3>{{ task.title }}</h3>
+    <button (click)="deleteTask(task.id)">Delete</button>
+    <ul>
+      <li *ngFor="let task of task.tasks; let i = index">
+        {{ task }}
+      </li>
+    </ul>
+</div>

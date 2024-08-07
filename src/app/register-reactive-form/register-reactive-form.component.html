@@ -1,0 +1,33 @@
+<p class="form-heading">User Registration Form using Reactive Form</p>
+
+<!-- <label for="name">Name: </label>
+<input id="name" type="text" [formControl]="name">
+<p>Value: {{ name.value }}</p> -->
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input id="email" type="text" formControlName="email">
+      <div id="emailError" *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+        <small class="error-message" *ngIf="profileForm.get('email')?.hasError('required')">Email is required.</small>
+        <small class="error-message" *ngIf="profileForm.get('email')?.hasError('email')">Please enter a valid email address.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password">
+      <div id="emailError" *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched">
+        <small class="error-message" *ngIf="profileForm.get('password')?.hasError('required')">Please provide a password.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword">
+      <div id="confirmPasswordError" *ngIf="profileForm.errors?.['PasswordNoMatch'] && profileForm.get('confirmPassword')?.touched">
+        <small class="error-message">Passwords do not match.</small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!profileForm.valid">Register</button>
+    <!-- <button type="submit">Register</button> -->
+</form>
+  

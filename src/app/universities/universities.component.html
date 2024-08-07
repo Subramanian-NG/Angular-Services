@@ -1,0 +1,48 @@
+<div style="margin-top: 40px;">
+  <app-navigation></app-navigation>
+</div>
+
+<div class="container">
+  <h5 class="heading">Search Universities by Country</h5>
+  
+  <mat-form-field class="search-input">
+    <input
+      type="text"
+      placeholder="Search countries..."
+      [(ngModel)]="searchText"
+      (input)="filterCountries()"
+      matInput
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCountrySelected($event.option.value)">
+      <mat-option *ngFor="let country of filteredCountries" [value]="country">
+        {{ country }}
+      </mat-option>
+    </mat-autocomplete>
+    <button mat-icon-button matSuffix *ngIf="searchText" (click)="clearSearchText()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="search-input" *ngIf="selectedCountry">
+    <input
+      type="text"
+      placeholder="Search universities..."
+      [(ngModel)]="universitySearchText"
+      (input)="filterUniversities()"
+      matInput
+    />
+    <button mat-icon-button matSuffix *ngIf="universitySearchText" (click)="clearUniversitySearchText()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div *ngIf="universities.length > 0">
+    <h5 class="heading">Universities in {{ selectedCountry }}</h5>
+    <ul>
+      <li *ngFor="let university of filteredUniversities">
+        <a [href]="university.web_pages[0]" target="_blank">{{ university.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
