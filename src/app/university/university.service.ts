@@ -6,8 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UniversityService {
-  private apiUrl = 'http://universities.hipolabs.com/search';
+  //private apiUrl = 'http://universities.hipolabs.com/search';
 
+  private apiUrl = '/api/universities/search';
+  
   constructor(private http: HttpClient) { }
 
   getUniversitiesByCountry(country: string): Observable<any[]> {

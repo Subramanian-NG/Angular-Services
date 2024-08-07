@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/universities/:path*",
+        "destination": "http://universities.hipolabs.com/:path*"
+      }
+    ]
+  }
+  
